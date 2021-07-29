@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-07-29 21:34:57
- * @LastEditTime: 2021-07-29 22:15:30
+ * @LastEditTime: 2021-07-29 22:42:57
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \vue3-ts-cms\src\App.vue
@@ -9,6 +9,7 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png" />
   <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
+  测试一下
 </template>
 
 <script lang="ts">
