@@ -1,26 +1,30 @@
 <!--
  * @Author: your name
  * @Date: 2021-07-29 21:34:57
- * @LastEditTime: 2021-07-29 22:42:57
+ * @LastEditTime: 2021-08-03 20:38:01
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \vue3-ts-cms\src\App.vue
 -->
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
-  测试一下
+  <div>
+    <h2>{{ $store.state.name }}</h2>
+
+    <router-link to="/login">登录</router-link>
+    <router-link to="/main">首页</router-link>
+    <router-view></router-view>
+    <el-button plain>按钮1</el-button>
+    <el-button type="primary">按钮2</el-button>
+    <el-button type="danger">按钮3</el-button>
+  </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import HelloWorld from './components/HelloWorld.vue'
 
 export default defineComponent({
   name: 'App',
-  components: {
-    HelloWorld
-  }
+  components: {}
 })
 </script>
 
