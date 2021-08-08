@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-08 16:06:37
- * @LastEditTime: 2021-08-08 19:51:51
+ * @LastEditTime: 2021-08-08 19:57:23
  * @LastEditors: Please set LastEditors
  * @Description: 手机号登录
  * @FilePath: \vue3-ts-cms\src\views\login\cpns\login-phone.vue
@@ -19,7 +19,6 @@
         </div>
       </el-form-item>
     </el-form>
-    12345
   </div>
 </template>
 

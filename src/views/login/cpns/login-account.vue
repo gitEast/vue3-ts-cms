@@ -1,7 +1,7 @@
 <!--
- * @Author: your name
+ * @Author: East Wind
  * @Date: 2021-08-08 16:06:28
- * @LastEditTime: 2021-08-08 19:10:06
+ * @LastEditTime: 2021-08-08 23:30:35
  * @LastEditors: Please set LastEditors
  * @Description: 账号登录
  * @FilePath: \vue3-ts-cms\src\views\login\cpns\login-account.vue
@@ -13,7 +13,7 @@
         <el-input v-model="account.name"></el-input>
       </el-form-item>
       <el-form-item label="密码" prop="password">
-        <el-input v-model="account.password"></el-input>
+        <el-input v-model="account.password" show-password></el-input>
       </el-form-item>
     </el-form>
   </div>
@@ -24,20 +24,30 @@ import { defineComponent, reactive, ref } from 'vue'
 import { ElForm } from 'element-plus'
 
 import { rules } from '../config/account-config'
+import localCache from '../../../utils/cache'
 
 export default defineComponent({
   setup() {
     const account = reactive({
-      name: '',
-      password: ''
+      name: localCache.getCache('name') ?? '',
+      password: localCache.getCache('password') ?? ''
     })
 
     const formRef = ref<InstanceType<typeof ElForm>>()
 
-    const loginAction = () => {
+    const loginAction = (isKeepPassword: boolean) => {
       formRef.value?.validate((valid) => {
         if (valid) {
-          console.log('真正开始执行登录逻辑')
+          // 1. 判断是否需要记住密码
+          if (isKeepPassword) {
+            // 本地缓存：sessionStorage, localStorage
+            localCache.setCache('name', account.name)
+            localCache.setCache('password', account.password)
+          } else {
+            localCache.deleteCache('name')
+            localCache.deleteCache('password')
+          }
+          // 2. 开始进入登录验证
         }
       })
     }

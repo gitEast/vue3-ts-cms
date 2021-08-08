@@ -51,9 +51,7 @@ export default defineComponent({
     const accountRef = ref<InstanceType<typeof LoginAccount>>()
 
     const handleLoginClick = () => {
-      console.log('点击登录按钮')
-      console.log(accountRef.value)
-      accountRef.value?.loginAction()
+      accountRef.value?.loginAction(isKeepPassword.value)
     }
 
     return {
