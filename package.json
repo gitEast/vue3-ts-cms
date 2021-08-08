@@ -10,9 +10,11 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "axios": "^0.21.1",
     "core-js": "^3.6.5",
     "element-plus": "^1.0.2-beta.65",
     "husky": "^7.0.1",
+    "normalize.css": "^8.0.1",
     "vue": "^3.0.0",
     "vue-router": "^4.0.10",
     "vuex": "^4.0.2"
@@ -38,7 +40,8 @@
     "less": "^3.0.4",
     "less-loader": "^5.0.0",
     "prettier": "^2.3.2",
-    "typescript": "~4.1.5"
+    "typescript": "~4.1.5",
+    "husky": "^7.0.0"
   },
   "config": {
     "commitizen": {

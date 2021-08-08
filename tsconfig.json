@@ -1,22 +1,29 @@
 {
   "compilerOptions": {
-    "target": "esnext",
-    "module": "esnext",
-    "strict": true,
-    "jsx": "preserve",
-    "importHelpers": true,
-    "moduleResolution": "node",
-    "skipLibCheck": true,
+    // 编译选项
+    "target": "esnext", // 目标代码 ts -> js(es6 以后)
+    "module": "esnext", // 目标代码需要使用的模块化方案(commonjs require/module.exports/ es module import/export), umd指多种模块化
+    "strict": true, // 严格模式，严格检查
+    "jsx": "preserve", // 要不要对jsx进行怎么样的处理，不转化，保留
+    "importHelpers": true, // 辅助的导入功能
+    "moduleResolution": "node", // 按照 node 的方式去解析模块 import
+    "skipLibCheck": true, // 跳过一些库的类型检测
+    // export default/module.exports = {}
+    // es module 和 commonjs 是否一起使用，是
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "sourceMap": true,
-    "baseUrl": ".",
-    "types": ["webpack-env"],
+    "sourceMap": true, // 是否生成映射文件(ts -> js)
+    "baseUrl": ".", // 文件路径在解析时，基本 url，当前文件下
+    "types": ["webpack-env"], // 指定具体要解析使用的类型，可以不传
+    // 路径解析，类似于 webpack 中的 alias
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["src/*"],
+      "components/*": ["src/components/*"]
     },
+    // 指定在项目中可以使用库的类型(Proxy/Window/Document)
     "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
   },
+  // 当前存在的 ts 代码需要解析的
   "include": [
     "src/**/*.ts",
     "src/**/*.tsx",
@@ -24,5 +31,5 @@
     "tests/**/*.ts",
     "tests/**/*.tsx"
   ],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules"] // 排除
 }

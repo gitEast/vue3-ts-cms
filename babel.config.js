@@ -10,7 +10,7 @@ module.exports = {
   presets: ['@vue/cli-plugin-babel/preset'],
   plugins: [
     [
-      "import",
+      'import',
       {
         libraryName: 'element-plus',
         customStyleName: (name) => {
