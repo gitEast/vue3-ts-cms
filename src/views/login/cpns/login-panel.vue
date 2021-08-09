@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-08 15:00:33
- * @LastEditTime: 2021-08-08 18:14:18
+ * @LastEditTime: 2021-08-09 06:38:31
  * @LastEditors: Please set LastEditors
  * @Description: 登录小面板
  * @FilePath: \vue3-ts-cms\src\views\login\cpns\login-panel.vue
@@ -10,18 +10,18 @@
   <div class="login-panel">
     <h1 class="title">后台管理系统</h1>
 
-    <el-tabs type="border-card" stretch>
-      <el-tab-pane>
+    <el-tabs type="border-card" stretch v-model="currentTab">
+      <el-tab-pane name="account">
         <template #label>
           <span><i class="el-icon-user-solid"></i> 账号登录</span>
         </template>
         <login-account ref="accountRef" />
       </el-tab-pane>
-      <el-tab-pane>
+      <el-tab-pane name="phone">
         <template #label>
           <span><i class="el-icon-mobile-phone"></i> 手机登录</span>
         </template>
-        <login-phone />
+        <login-phone ref="phoneRef" />
       </el-tab-pane>
     </el-tabs>
 
@@ -47,17 +47,28 @@ export default defineComponent({
     LoginPhone
   },
   setup() {
+    // 定义属性
     const isKeepPassword = ref(true)
     const accountRef = ref<InstanceType<typeof LoginAccount>>()
+    const phoneRef = ref<InstanceType<typeof LoginPhone>>()
+    const currentTab = ref<string>('account')
 
+    // 定义方法
     const handleLoginClick = () => {
-      accountRef.value?.loginAction(isKeepPassword.value)
+      if (currentTab.value === 'account') {
+        accountRef.value?.loginAction(isKeepPassword.value)
+      } else {
+        // 手机登录
+        // 调用 phone 中的逻辑
+      }
     }
 
     return {
       isKeepPassword,
       handleLoginClick,
-      accountRef
+      accountRef,
+      phoneRef,
+      currentTab
     }
   }
 })

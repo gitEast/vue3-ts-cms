@@ -1,7 +1,7 @@
 /*
  * @Author: East Wind
  * @Date: 2021-08-07 11:27:38
- * @LastEditTime: 2021-08-08 09:51:48
+ * @LastEditTime: 2021-08-09 21:27:57
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \vue3-ts-cms\src\service\request\index.ts
@@ -11,7 +11,7 @@ import type { AxiosInstance } from 'axios'
 import type { EASTRequestConfig, EASTRequestInterceptors } from './type'
 
 // Loading 引入
-import { ElLoading } from 'element-plus'
+// import { ElLoading } from 'element-plus'
 import { ILoadingInstance } from 'element-plus/lib/el-loading/src/loading.type'
 
 const DEFAULT_LOADING = false
@@ -46,34 +46,34 @@ class EASTRequest {
     // 请求拦截
     this.instance.interceptors.request.use(
       (config) => {
-        console.log('所有实例共同的--------请求成功的拦截')
-        if (this.showLoading) {
-          // 使用 Loading
-          this.loading = ElLoading.service({
-            lock: true, // 遮罩层
-            text: '正在请求数据中...', // 图标下的文字
-            background: 'rgba(0, 0, 0, 0.5)'
-          })
-        }
+        // console.log('所有实例共同的--------请求成功的拦截')
+        // if (this.showLoading) {
+        //   // 使用 Loading
+        //   this.loading = ElLoading.service({
+        //     lock: true, // 遮罩层
+        //     text: '正在请求数据中...', // 图标下的文字
+        //     background: 'rgba(0, 0, 0, 0.5)'
+        //   })
+        // }
         return config
       },
       (err) => {
-        console.log('所有实例共同的--------请求失败的拦截')
+        // console.log('所有实例共同的--------请求失败的拦截')
         return err
       }
     )
     // 响应拦截
     this.instance.interceptors.response.use(
       (res) => {
-        console.log('所有实例共同的--------响应成功的拦截')
-        setTimeout(() => {
-          // 移除 loading
-          this.loading?.close()
-        }, 1000)
+        // console.log('所有实例共同的--------响应成功的拦截')
+        // setTimeout(() => {
+        //   // 移除 loading
+        //   this.loading?.close()
+        // }, 1000)
         return res.data
       },
       (err) => {
-        console.log('所有实例共同的--------响应失败的拦截')
+        // console.log('所有实例共同的--------响应失败的拦截')
         // 移除 loading
         this.loading?.close()
         return err
@@ -99,7 +99,7 @@ class EASTRequest {
           if (config.interceptors?.responseInterceptor) {
             res = config.interceptors.responseInterceptor(res)
           }
-          console.log(res)
+          // console.log(res)
           this.showLoading = DEFAULT_LOADING
           resolve(res)
         })

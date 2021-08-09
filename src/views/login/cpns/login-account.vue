@@ -1,7 +1,7 @@
 <!--
  * @Author: East Wind
  * @Date: 2021-08-08 16:06:28
- * @LastEditTime: 2021-08-08 23:30:35
+ * @LastEditTime: 2021-08-09 21:49:57
  * @LastEditors: Please set LastEditors
  * @Description: 账号登录
  * @FilePath: \vue3-ts-cms\src\views\login\cpns\login-account.vue
@@ -22,12 +22,14 @@
 <script lang="ts">
 import { defineComponent, reactive, ref } from 'vue'
 import { ElForm } from 'element-plus'
+import { useStore } from 'vuex'
 
 import { rules } from '../config/account-config'
 import localCache from '../../../utils/cache'
 
 export default defineComponent({
   setup() {
+    const store = useStore()
     const account = reactive({
       name: localCache.getCache('name') ?? '',
       password: localCache.getCache('password') ?? ''
@@ -48,6 +50,7 @@ export default defineComponent({
             localCache.deleteCache('password')
           }
           // 2. 开始进入登录验证
+          store.dispatch('login/accountLoginAction', { ...account })
         }
       })
     }

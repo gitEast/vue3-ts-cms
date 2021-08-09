@@ -63,21 +63,21 @@ axios.get({})
 // 6. axios 的拦截器，fn1 成功函数，fn2 失败函数
 axios.interceptors.request.use(
   (config) => {
-    console.log('发送请求成功的拦截')
+    // console.log('发送请求成功的拦截')
     return config
   },
   (err) => {
-    console.log('发送请求失败的拦截')
+    // console.log('发送请求失败的拦截')
     return err
   }
 )
 axios.interceptors.response.use(
   (res) => {
-    console.log('响应返回成功的拦截')
+    // console.log('响应返回成功的拦截')
     return res
   },
   (err) => {
-    console.log('响应返回失败的拦截')
+    // console.log('响应返回失败的拦截')
     return err
   }
 )
