@@ -1,7 +1,7 @@
 <!--
  * @Author: East Wind
  * @Date: 2021-07-31 11:09:03
- * @LastEditTime: 2021-08-10 21:02:52
+ * @LastEditTime: 2021-08-11 22:49:43
  * @LastEditors: Please set LastEditors
  * @Description: 首页
  * @FilePath: \vue3-ts-cms\src\views\main\main.vue
@@ -16,7 +16,11 @@
         <el-header class="page-header">
           <nav-header @foldChange="handleFoldChange"></nav-header>
         </el-header>
-        <el-main class="page-content">Main</el-main>
+        <el-main class="page-content">
+          <div class="page-info">
+            <router-view></router-view>
+          </div>
+        </el-main>
       </el-container>
     </el-container>
   </div>
@@ -62,6 +66,12 @@ export default defineComponent({
 
 .page-content {
   height: calc(100% - 48px);
+  .page-info {
+    background-color: #fff;
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+  }
 }
 
 .el-header,

@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-08-09 06:08:08
- * @LastEditTime: 2021-08-10 05:56:53
+ * @LastEditTime: 2021-08-11 21:33:46
  * @LastEditors: Please set LastEditors
  * @Description: 登录的 vuex 使用
  * @FilePath: \vue3-ts-cms\src\store\login\login.ts
@@ -20,6 +20,7 @@ import {
 import localCache from '@/utils/cache'
 
 import router from '@/router'
+import { mapMenusToRoutes } from '@/utils/map-menus'
 
 // Module<当前模块 state 类型，根模块 state 类型>
 const loginModule: Module<ILoginState, IRootState> = {

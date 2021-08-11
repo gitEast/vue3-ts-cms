@@ -1,7 +1,7 @@
 /*
  * @Author: East Wind
  * @Date: 2021-07-31 11:56:51
- * @LastEditTime: 2021-08-10 20:36:22
+ * @LastEditTime: 2021-08-11 21:34:15
  * @LastEditors: Please set LastEditors
  * @Description: token userInfo userMenus 等数据保存
  * @FilePath: \vue3-ts-cms\src\store\index.ts
@@ -24,8 +24,8 @@ const store = createStore<IRootState>({
   },
   mutations: {
     changeName(state) {
-      console.log(state.name)
-      console.log(state)
+      // console.log(state.name)
+      // console.log(state)
     }
   },
   getters: {},
