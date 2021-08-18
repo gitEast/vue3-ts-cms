@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-10 06:19:07
- * @LastEditTime: 2021-08-11 21:39:05
+ * @LastEditTime: 2021-08-12 22:22:35
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \vue3-ts-cms\src\components\nav-menu\src\nav-menu.vue
@@ -16,7 +16,7 @@
 
     <!-- 菜单目录 -->
     <el-menu
-      default-active="2"
+      :default-active="defaultValue"
       class="el-menu-vertical"
       :collapse="collapse"
       background-color="#0c2135"
@@ -58,9 +58,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from 'vue'
+import { defineComponent, computed, ref } from 'vue'
 import { useStore } from '@/store'
-import router from '@/router'
+import { useRoute, useRouter } from 'vue-router'
+import { pathMapToMenu } from '@/utils/map-menus'
 
 // ts -> vuex -> pinia
 
@@ -72,15 +73,29 @@ export default defineComponent({
     }
   },
   setup() {
+    // store
     const store = useStore()
     const userMenus = computed(() => store.state.login.userMenus)
+
+    // router
+    const router = useRouter()
+    const route = useRoute()
+    const currentPath = route.path
+
+    // data
+    const menu = pathMapToMenu(userMenus.value, currentPath)
+    const defaultValue = ref(menu.id + '')
+
+    // event handle
     const handleMenuItemClick = (item: any) => {
       router.push({
         path: item.url ?? '/not-found'
       })
     }
+
     return {
       userMenus,
+      defaultValue,
       handleMenuItemClick
     }
   }

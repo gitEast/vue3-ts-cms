@@ -1,7 +1,7 @@
 <!--
  * @Author: East Wind
  * @Date: 2021-07-31 11:09:03
- * @LastEditTime: 2021-08-11 22:49:43
+ * @LastEditTime: 2021-08-15 21:45:19
  * @LastEditors: Please set LastEditors
  * @Description: 首页
  * @FilePath: \vue3-ts-cms\src\views\main\main.vue
@@ -68,8 +68,8 @@ export default defineComponent({
   height: calc(100% - 48px);
   .page-info {
     background-color: #fff;
-    width: 100%;
-    height: 100%;
+    // width: 100%;
+    // height: 100%;
     border-radius: 5px;
   }
 }

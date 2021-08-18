@@ -1,7 +1,7 @@
 /*
  * @Author: East Wind
  * @Date: 2021-07-31 10:13:54
- * @LastEditTime: 2021-08-11 23:16:33
+ * @LastEditTime: 2021-08-12 22:30:09
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \vue3-ts-cms\src\router\index.ts
@@ -11,8 +11,9 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 import type { RouteRecordRaw } from 'vue-router'
 
 import localCache from '@/utils/cache'
-import { mapMenusToRoutes } from '@/utils/map-menus'
-import store from '@/store'
+// import { mapMenusToRoutes } from '@/utils/map-menus'
+// import store from '@/store'
+import { firstMenu } from '@/utils/map-menus'
 
 const routes: RouteRecordRaw[] = [
   {
@@ -49,14 +50,10 @@ router.beforeEach((to) => {
     if (!token) {
       return '/login'
     }
-    // userMenus => routes
-    const userMenus = (store.state as any).login.userMenus
-    const routes = mapMenusToRoutes(userMenus)
+  }
 
-    // 将 routes => router.main.children
-    routes.forEach((route) => {
-      router.addRoute('main', route)
-    })
+  if (to.path === '/main') {
+    return firstMenu.url
   }
 })
 

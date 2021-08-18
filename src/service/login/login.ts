@@ -9,7 +9,8 @@
 
 import eastRequest from '..'
 
-import { IAccount, IDataType, ILoginResult } from './type'
+import { IAccount, ILoginResult } from './type'
+import { IDataType } from '../types'
 
 // 枚举 API，防止网络请求改变路径
 enum LoginAPI {

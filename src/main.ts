@@ -1,7 +1,7 @@
 /*
  * @Author: East Wind
  * @Date: 2021-07-29 21:34:57
- * @LastEditTime: 2021-08-10 00:34:23
+ * @LastEditTime: 2021-08-16 22:42:23
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \vue3-ts-cms\src\main.ts
@@ -72,9 +72,10 @@ import { setupStore } from './store'
 // }, 2000)
 
 const app = createApp(App)
+
+setupStore()
 app.use(router)
 app.use(store)
-setupStore()
 // app.use(ElementPlus)
 app.use(registerApp)
 app.mount('#app')

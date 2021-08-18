@@ -1,12 +1,15 @@
 /*
  * @Author: your name
  * @Date: 2021-08-11 21:06:26
- * @LastEditTime: 2021-08-11 21:34:23
+ * @LastEditTime: 2021-08-13 06:02:27
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \vue3-ts-cms\src\utils\map-menus.ts
  */
+import { IBreadcrumb } from '@/base-ui/breadcrumb'
 import { RouteRecordRaw } from 'vue-router'
+
+let firstMenu: any = null
 
 export function mapMenusToRoutes(userMenus: any[]): RouteRecordRaw[] {
   const routes: RouteRecordRaw[] = []
@@ -28,6 +31,9 @@ export function mapMenusToRoutes(userMenus: any[]): RouteRecordRaw[] {
       if (menu.type === 2) {
         const route = allRoutes.find((route) => route.path === menu.url)
         if (route) routes.push(route)
+        if (!firstMenu) {
+          firstMenu = menu
+        }
       } else {
         _recurseGetRoute(menu.children)
       }
@@ -37,3 +43,48 @@ export function mapMenusToRoutes(userMenus: any[]): RouteRecordRaw[] {
 
   return routes
 }
+
+// 根据当前路径匹配面包屑
+export function pathMapBreadcrumbs(userMenus: any[], currentPath: string) {
+  const breadcrumbs: IBreadcrumb[] = []
+
+  pathMapToMenu(userMenus, currentPath, breadcrumbs)
+
+  return breadcrumbs
+}
+
+// 根据路径匹配菜单
+export function pathMapToMenu(
+  userMenus: any[],
+  currentPath: string,
+  breadcrumbs?: IBreadcrumb[]
+): any {
+  for (const menu of userMenus) {
+    if (menu.type === 1) {
+      // 有 children，再次遍历
+      const findMenu = pathMapToMenu(menu.children ?? [], currentPath)
+      if (findMenu) {
+        breadcrumbs?.push({ name: menu.name })
+        breadcrumbs?.push({ name: findMenu.name, path: findMenu.url })
+        return findMenu
+      }
+    } else if (menu.type === 2 && menu.url === currentPath) {
+      return menu
+    }
+  }
+}
+// export function pathMapToMenu(userMenus: any[], currentPath: string): any {
+//   for (const menu of userMenus) {
+//     if (menu.type === 1) {
+//       // 有 children，再次遍历
+//       const findMenu = pathMapToMenu(menu.children ?? [], currentPath)
+//       if (findMenu) {
+//         return findMenu
+//       }
+//     } else if (menu.type === 2 && menu.url === currentPath) {
+//       return menu
+//     }
+//   }
+// }
+
+export { firstMenu }

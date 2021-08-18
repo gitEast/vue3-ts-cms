@@ -1,7 +1,7 @@
 /*
  * @Author: East Wind
  * @Date: 2021-08-07 11:27:38
- * @LastEditTime: 2021-08-09 21:27:57
+ * @LastEditTime: 2021-08-15 21:10:15
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \vue3-ts-cms\src\service\request\index.ts
@@ -81,7 +81,7 @@ class EASTRequest {
     )
   }
 
-  request<T>(config: EASTRequestConfig<T>): Promise<T> {
+  request<T = any>(config: EASTRequestConfig<T>): Promise<T> {
     return new Promise((resolve, reject) => {
       // 单个网络请求的拦截
       if (config.interceptors?.requestInterceptor) {
@@ -110,19 +110,19 @@ class EASTRequest {
     })
   }
 
-  get<T>(config: EASTRequestConfig<T>): Promise<T> {
+  get<T = any>(config: EASTRequestConfig<T>): Promise<T> {
     return this.request<T>({ ...config, method: 'GET' })
   }
 
-  post<T>(config: EASTRequestConfig<T>): Promise<T> {
+  post<T = any>(config: EASTRequestConfig<T>): Promise<T> {
     return this.request<T>({ ...config, method: 'POST' })
   }
 
-  delete<T>(config: EASTRequestConfig<T>): Promise<T> {
+  delete<T = any>(config: EASTRequestConfig<T>): Promise<T> {
     return this.request<T>({ ...config, method: 'DELETE' })
   }
 
-  patch<T>(config: EASTRequestConfig<T>): Promise<T> {
+  patch<T = any>(config: EASTRequestConfig<T>): Promise<T> {
     return this.request<T>({ ...config, method: 'PATCH' })
   }
 }

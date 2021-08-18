@@ -1,41 +1,43 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-10 22:44:12
- * @LastEditTime: 2021-08-11 23:51:26
+ * @LastEditTime: 2021-08-18 23:30:16
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \vue3-ts-cms\src\views\main\system\user\user.vue
 -->
 <template>
   <div class="user">
-    <div class="search">
-      <east-form></east-form>
-    </div>
-    <div class="content"></div>
+    <page-search :searchFormConfig="searchFormConfig"></page-search>
+    <page-content
+      :contentTableConfig="contentTableConfig"
+      pageName="users"
+    ></page-content>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import EastForm, { IFormItem } from '@/base-ui/form'
+
+import PageSearch from '@/components/page-search'
+import PageContent from '@/components/page-content'
+
+import { searchFormConfig } from './config/search.config'
+import { contentTableConfig } from './config/content.config'
 
 export default defineComponent({
   name: 'user',
   components: {
-    EastForm
+    PageSearch,
+    PageContent
   },
   setup() {
-    const formItems: IFormItem[] = [
-      {
-        label: '用户名',
-        rules: [],
-        placeholder: '请'
-      }
-    ]
-    console.log(formItems)
-    return {}
+    return {
+      searchFormConfig,
+      contentTableConfig
+    }
   }
 })
 </script>
 
-<style scoped></style>
+<style scoped lang="less"></style>

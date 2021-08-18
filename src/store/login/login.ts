@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-08-09 06:08:08
- * @LastEditTime: 2021-08-11 21:33:46
+ * @LastEditTime: 2021-08-12 21:42:35
  * @LastEditors: Please set LastEditors
  * @Description: 登录的 vuex 使用
  * @FilePath: \vue3-ts-cms\src\store\login\login.ts
@@ -42,6 +42,14 @@ const loginModule: Module<ILoginState, IRootState> = {
     },
     changeUserMenus(state, userMenus: any) {
       state.userMenus = userMenus
+
+      // userMenus => routes
+      const routes = mapMenusToRoutes(userMenus)
+
+      // 将 routes => router.main.children
+      routes.forEach((route) => {
+        router.addRoute('main', route)
+      })
     }
   },
   actions: {
